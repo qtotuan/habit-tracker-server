@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170809174326) do
   create_table "habits", force: :cascade do |t|
     t.string "title"
     t.string "description"
+    t.date "dates_completed", array: true
     t.bigint "user_id"
     t.bigint "category_id"
     t.datetime "created_at", null: false

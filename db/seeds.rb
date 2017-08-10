@@ -11,3 +11,5 @@ Category.create(name: "Health")
 
 Habit.create(title: "Meditation", description: "TM twice per day", user: User.first, category: Category.first)
 Habit.create(title: "Green Smoothie", description: "Make a morning shake with kale and spinach", user: User.first, category: Category.first)
+Habit.create(title: "Floss", description: "Floss every evening", user: User.first, category: Category.first)
+Habit.create(title: "Measure waist", description: "Keep on track for marathon season", user: User.first, category: Category.first)

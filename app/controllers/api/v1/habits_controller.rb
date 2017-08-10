@@ -5,6 +5,12 @@ module Api
       def index
         render json: Habit.all
       end
+
+      def update
+        puts "this is working damn it"
+        byebug
+        binding.pry
+      end
     end
 
   end
