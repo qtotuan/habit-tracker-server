@@ -6,8 +6,12 @@ module Api
         render json: Habit.all
       end
 
+      def create
+        puts "Creating"
+      end
+
       def update
-        puts "this is working damn it"
+
         byebug
         binding.pry
       end

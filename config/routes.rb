@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :habits
 
       # put '/api/v1/habits/:id'
-      post '/habits/:id', to: 'habits#update'
+      # post '/habits/:id', to: 'habits#update'
     end
   end
 end
