@@ -1,3 +1,5 @@
+require 'date'
+
 module Api
   module V1
 
@@ -11,9 +13,18 @@ module Api
       end
 
       def update
-
-        byebug
-        binding.pry
+        # byebug
+        habit = Habit.find(params[:id])
+        date = DateTime.parse(params[:selectedDate]).to_date
+        if habit.dates_completed.include?(date)
+          habit.dates_completed.delete(date)
+          habit.update(dates_completed: habit.dates_completed)
+          render json: {message: "Date was removed", status: 201}
+        else
+          habit.dates_completed.push(date)
+          habit.update(dates_completed: habit.dates_completed)
+          render json: {message: "Habit was updated", status: 201, updated_habit: habit}
+        end
       end
     end
 
