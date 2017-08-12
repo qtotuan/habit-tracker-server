@@ -8,6 +8,8 @@
 
 User.create(first_name: "Susan", last_name: "DeGeneres", email: "susan@susan.com")
 Category.create(name: "Health")
+Category.create(name: "Finance")
+Category.create(name: "Relationships")
 
 Habit.create(title: "Meditation", description: "TM twice per day", user: User.first, category: Category.first)
 Habit.create(title: "Green Smoothie", description: "Make a morning shake with kale and spinach", user: User.first, category: Category.first)
