@@ -19,12 +19,13 @@ module Api
           user: user
           })
         # byebug
-        render json: {message: "Habit was created", status: 201, habits: Habit.all}
+        habits = render json: Habit.all
+        render json: {message: "Habit was created", status: 201, habits: habits}
       end
 
       def update
         habit = Habit.find(params[:id])
-        # debugger
+        # debger
         if params[:selectedDate]
           date = DateTime.parse(params[:selectedDate]).to_date
           if habit.dates_completed.include?(date)
