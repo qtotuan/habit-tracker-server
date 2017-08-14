@@ -18,9 +18,8 @@ module Api
           category: category,
           user: user
           })
-        # byebug
-        habits = render json: Habit.all
-        render json: {message: "Habit was created", status: 201, habits: habits}
+
+        render json: {message: "Habit was created", status: 201, habits: Habit.all}
       end
 
       def update
