@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   def index
-    "Hello World"
+    @categories = Category.all
+    render json: @categories
   end
 end

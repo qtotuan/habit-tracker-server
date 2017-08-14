@@ -10,7 +10,7 @@ require 'rack/cors'
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:3001'
+    origins 'https://evening-sands-15145.herokuapp.com'
 
     resource '*',
       headers: :any,
