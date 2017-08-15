@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170809174326) do
     t.string "title"
     t.string "description"
     t.date "dates_completed", default: [], array: true
+    t.integer "frequency"
     t.bigint "user_id"
     t.bigint "category_id"
     t.datetime "created_at", null: false

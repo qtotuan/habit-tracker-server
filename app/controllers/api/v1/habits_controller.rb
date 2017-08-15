@@ -9,6 +9,7 @@ module Api
       end
 
       def create
+        # debugger
         category = Category.find_by(name: params[:category])
         user = User.find(params[:user_id])
         # byebug
@@ -16,8 +17,10 @@ module Api
           title: params[:title],
           description: params[:description],
           category: category,
-          user: user
+          user: user,
+          frequency: params[:frequency]
           })
+          # debugger
 
         render json: {message: "Habit was created", status: 201, habits: Habit.all}
       end
@@ -54,7 +57,7 @@ module Api
       private
 
       def habit_params
-        params.require(:habit).permit(:title, :description, :user_id, :category, :category_id)
+        params.require(:habit).permit(:title, :description, :user_id, :category, :category_id, :frequency)
       end
 
     end # Class
