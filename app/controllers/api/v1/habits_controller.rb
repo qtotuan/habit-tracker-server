@@ -9,17 +9,19 @@ module Api
       end
 
       def create
-        category = Category.find_by(name: params[:category])
-        user = User.find(params[:user_id])
+        category = Category.find_by(name: params[:habit][:category])
+        user = User.find_by(email: params[:user_email])
+
         habit = Habit.create({
-          title: params[:title],
-          description: params[:description],
+          title: params[:habit][:title],
+          description: params[:habit][:description],
           category: category,
           user: user,
-          frequency: params[:frequency]
+          frequency: params[:habit][:frequency]
         })
+        # byebug
 
-        render json: {message: "Habit was created", status: 201, habits: Habit.all}
+        render json: Habit.all
       end
 
       def update
@@ -29,16 +31,16 @@ module Api
           if habit.dates_completed.include?(date)
             habit.dates_completed.delete(date)
             habit.update(dates_completed: habit.dates_completed)
-            render json: {message: "Date was removed", status: 201, habits: Habit.all}
+            render json: Habit.all
           else
             habit.dates_completed.push(date)
             habit.update(dates_completed: habit.dates_completed)
-            render json: {message: "Date was updated", status: 201, habits: Habit.all}
+            render json: Habit.all
           end
         else
           puts "WE ARE GOING TO UPDATE THE HABIT!"
           habit.update(habit_params)
-          render json: {message: "Habit was updated", status: 201, habits: Habit.all}
+          render json: Habit.all
         end
       end
 
@@ -46,13 +48,13 @@ module Api
         habit = Habit.find(params[:id])
         # debugger
         habit.destroy
-        render json: {message: "Habit was deleted", status: 201, habits: Habit.all}
+        render json: Habit.all
       end
 
       private
 
       def habit_params
-        params.require(:habit).permit(:title, :description, :user_id, :category, :category_id, :frequency)
+        params.require(:habit).permit(:title, :description, :category, :frequency)
       end
 
     end # Class
