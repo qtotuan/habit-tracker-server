@@ -7,11 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(first_name: "Susan", last_name: "DeGeneres", email: "susan@susan.com")
+User.create(first_name: "Quynh", last_name: "To Tuan", email: "quynh@quynh.com")
+
 Category.create(name: "health")
 Category.create(name: "finance")
-Category.create(name: "relationships")
+Category.create(name: "relationship")
 
 Habit.create(title: "Meditation", description: "TM twice per day", user: User.first, category: Category.first, frequency: 2)
 Habit.create(title: "Green Smoothie", description: "Make a morning shake with kale and spinach", user: User.first, category: Category.first, frequency: 3)
-Habit.create(title: "Floss", description: "Floss every evening", user: User.first, category: Category.first, frequency: 6)
-Habit.create(title: "Measure waist", description: "Keep on track for marathon season", user: User.first, category: Category.first, frequency: 7)
+Habit.create(title: "Floss", description: "Floss every evening", user: User.find(2), category: Category.first, frequency: 6)
+Habit.create(title: "Measure waist", description: "Keep on track for marathon season", user: User.find(2), category: Category.first, frequency: 7)

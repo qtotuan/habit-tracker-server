@@ -9,9 +9,14 @@ module Api
       end
 
       def create
-        category = Category.find_by(name: params[:habit][:category])
-        user = User.find_by(email: params[:user_email])
+        # Find category or create new one
+        if (params[:habit][:newCategory] != "")
+          category = Category.create(name: params[:habit][:newCategory])
+         else
+          category = Category.find_by(name: params[:habit][:category])
+        end
 
+        user = User.find_by(email: params[:user_email])
         habit = Habit.create({
           title: params[:habit][:title],
           description: params[:habit][:description],
@@ -19,12 +24,11 @@ module Api
           user: user,
           frequency: params[:habit][:frequency]
         })
-        # byebug
-
         render json: Habit.all
       end
 
       def update
+        category = Category.find_by(name: params[:category])
         habit = Habit.find(params[:id])
         if params[:selectedDate]
           date = DateTime.parse(params[:selectedDate]).to_date
@@ -39,7 +43,13 @@ module Api
           end
         else
           puts "WE ARE GOING TO UPDATE THE HABIT!"
-          habit.update(habit_params)
+          # debugger
+          habit.update({
+            title: params[:title],
+            description: params[:description],
+            category: category,
+            frequency: params[:frequency]
+            })
           render json: Habit.all
         end
       end
