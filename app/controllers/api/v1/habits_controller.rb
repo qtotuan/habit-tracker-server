@@ -16,7 +16,7 @@ module Api
           category = Category.find_by(name: params[:habit][:category])
         end
 
-        user = User.find_by(email: params[:user_email])
+        user = User.find_by(id: params[:habit][:user_id])
         habit = Habit.create({
           title: params[:habit][:title],
           description: params[:habit][:description],
@@ -56,7 +56,6 @@ module Api
 
       def destroy
         habit = Habit.find(params[:id])
-        # debugger
         habit.destroy
         render json: Habit.all
       end
