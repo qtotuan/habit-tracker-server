@@ -9,14 +9,14 @@ module Api
 
       def create
         user = User.create(user_params)
-        # debugger
+        # byebug
         render json: {message: "User was created!", status: 201, user: user}
       end
 
       private
 
       def user_params
-        params.require(:user).permit(:first_name, :last_name, :email)
+        params.permit(:first_name, :last_name, :email, :password)
       end
 
     end
